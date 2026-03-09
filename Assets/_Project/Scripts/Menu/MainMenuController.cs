@@ -10,16 +10,18 @@ namespace Gryd.Menu
     /// </summary>
     public class MainMenuController : MonoBehaviour
     {
+        [SerializeField] private SettingsController _settings;
+
         // Botón Play → conectar en Inspector
         public void OnPlayPressed()
         {
             SceneLoader.Instance.Load(SceneNames.LevelSelect);
         }
 
-        // Botón Settings (futuro)
+        // Botón Settings → conectar en Inspector
         public void OnSettingsPressed()
         {
-            // TODO: abrir panel de settings
+            _settings.Open();
         }
 
         // Botón Quit

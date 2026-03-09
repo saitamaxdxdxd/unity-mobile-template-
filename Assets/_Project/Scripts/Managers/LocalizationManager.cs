@@ -50,7 +50,7 @@ namespace Gryd.Managers
 
             _data.BuildCache();
 
-            int saved = SaveManager.Instance.Data.language;
+            int saved = SaveManager.Instance != null ? SaveManager.Instance.Data.language : -1;
             CurrentLanguage = saved == -1
                 ? DetectDeviceLanguage()
                 : (Language)saved;
