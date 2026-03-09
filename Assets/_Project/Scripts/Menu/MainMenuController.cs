@@ -12,6 +12,11 @@ namespace Gryd.Menu
     {
         [SerializeField] private SettingsController _settings;
 
+        private void Start()
+        {
+            AudioManager.Instance.PlayPlaylist(AudioManager.Instance.musicMainMenu);
+        }
+
         // Botón Play → conectar en Inspector
         public void OnPlayPressed()
         {

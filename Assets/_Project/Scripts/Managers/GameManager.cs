@@ -26,6 +26,7 @@ namespace Gryd.Managers
         {
             if (Instance != null) { Destroy(gameObject); return; }
             Instance = this;
+            Time.timeScale = 1f;
         }
 
         private void Start()
@@ -47,10 +48,10 @@ namespace Gryd.Managers
 
         // ── Helpers públicos ─────────────────────────────────
 
-        public void LevelComplete()  => SetState(GameState.LevelComplete);
-        public void GameOver()       => SetState(GameState.GameOver);
-        public void Pause()          => SetState(GameState.Paused);
-        public void Resume()         => SetState(GameState.Playing);
+        public void LevelComplete() => SetState(GameState.LevelComplete);
+        public void GameOver() => SetState(GameState.GameOver);
+        public void Pause() => SetState(GameState.Paused);
+        public void Resume() => SetState(GameState.Playing);
 
         public void RestartLevel()
         {

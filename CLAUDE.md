@@ -33,6 +33,7 @@
 - Managers que dependen de `SaveManager` deben leer en `Awake()`, no `Start()`, porque `SaveManager` usa `RuntimeInitializeOnLoadMethod(BeforeSceneLoad)`.
 - `LocalizationData` asset debe estar en `_Project/Resources/` con nombre exacto `LocalizationData`.
 - `LocalizationManager.Awake()` null-checkea `SaveManager.Instance` — orden de `BeforeSceneLoad` no está garantizado entre managers.
+- `GameManager.Awake()` fuerza `Time.timeScale = 1f` — el enum `GameState` arranca en `Playing` (0) y `SetState(Playing)` hace early return, nunca lo resetea sin esto.
 
 ---
 
@@ -93,9 +94,11 @@ Parámetros configurables en Inspector: `_swipeThreshold` (px), `_tapMaxDuration
 
 ### Gameplay
 
-| Script              | Ruta              | Función                                                   |
-| ------------------- | ----------------- | ---------------------------------------------------------- |
-| `PauseController` | Scripts/Gameplay/ | Escucha GameManager.OnStateChanged, Escape con InputSystem |
+| Script                      | Ruta              | Función                                                          |
+| --------------------------- | ----------------- | ---------------------------------------------------------------- |
+| `PauseController`         | Scripts/Gameplay/ | Escucha GameManager.OnStateChanged, Escape con InputSystem       |
+| `GameOverController`      | Scripts/Gameplay/ | Panel GameOver — Retry / Menu. Se activa con estado GameOver     |
+| `LevelCompleteController` | Scripts/Gameplay/ | Panel LevelComplete — Next / Menu. Desbloquea siguiente nivel    |
 
 ### UI
 
@@ -244,9 +247,9 @@ ScriptableObjects/
 
 - [X] **InputHandler** — `IInputHandler` + `InputHandler` en `Scripts/Input/`
 - [X] **Settings Screen** — `SettingsController`: sliders volumen + toggle EN/ES
-- [ ] **Panel GameOver** — UI que aparece cuando GameManager → GameOver
-- [ ] **Panel LevelComplete** — UI con botón siguiente nivel y llamada a UnlockNextLevel()
-- [ ] **MainMenu** — reproducir `musicMainMenu` al entrar
+- [X] **Panel GameOver** — `GameOverController`: Retry / Menu, se activa con OnStateChanged
+- [X] **Panel LevelComplete** — `LevelCompleteController`: Next / Menu, desbloquea siguiente nivel
+- [X] **MainMenu** — reproduce `musicMainMenu` en Start()
 
 ### Siguiente — Gameplay
 
