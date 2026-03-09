@@ -32,6 +32,7 @@
 - `AddComponent<T>()` dispara `Awake()` inmediatamente — no asignar campos después.
 - Managers que dependen de `SaveManager` deben leer en `Awake()`, no `Start()`, porque `SaveManager` usa `RuntimeInitializeOnLoadMethod(BeforeSceneLoad)`.
 - `LocalizationData` asset debe estar en `_Project/Resources/` con nombre exacto `LocalizationData`.
+- `LocalizationManager.Awake()` null-checkea `SaveManager.Instance` — orden de `BeforeSceneLoad` no está garantizado entre managers.
 
 ---
 
@@ -72,13 +73,23 @@ Boot → MainMenu → LevelSelect → Loading (3s async) → GameScene
 | `LocalizationManager` | Scripts/Managers/ | Idioma EN/ES, carga `LocalizationData` desde Resources |
 | `GameManager`         | Scripts/Managers/ | Estado del juego (Playing/Paused/LevelComplete/GameOver) |
 
+### Input
+
+| Script             | Ruta           | Función                                                                  |
+| ------------------ | -------------- | ------------------------------------------------------------------------ |
+| `IInputHandler`  | Scripts/Input/ | Interfaz: OnTap, OnSwipe, OnHoldStart, OnHoldEnd, OnPointerDown/Up       |
+| `InputHandler`   | Scripts/Input/ | Touch (mobile, primer dedo) + Mouse (PC/Editor). Agregar a un GameObject |
+
+Parámetros configurables en Inspector: `_swipeThreshold` (px), `_tapMaxDuration` (s), `_holdDuration` (s).
+
 ### Menu
 
-| Script                    | Ruta          | Función                                                    |
-| ------------------------- | ------------- | ----------------------------------------------------------- |
-| `MainMenuController`    | Scripts/Menu/ | Botones Play / Settings / Quit                              |
-| `LevelSelectController` | Scripts/Menu/ | Grilla paginada con flechas, desbloqueo vía SaveManager    |
-| `LevelButton`           | Scripts/Menu/ | Botón individual, onClick conectado por código en Setup() |
+| Script                    | Ruta          | Función                                                          |
+| ------------------------- | ------------- | ---------------------------------------------------------------- |
+| `MainMenuController`    | Scripts/Menu/ | Botones Play / Settings / Quit. Ref a `SettingsController`      |
+| `LevelSelectController` | Scripts/Menu/ | Grilla paginada con flechas, desbloqueo vía SaveManager          |
+| `LevelButton`           | Scripts/Menu/ | Botón individual, onClick conectado por código en Setup()       |
+| `SettingsController`    | Scripts/Menu/ | Sliders música/SFX + botones EN/ES. Llamar Open() / Close()     |
 
 ### Gameplay
 
@@ -138,6 +149,42 @@ GameManager.Instance.GameOver();
 GameManager.OnStateChanged += OnStateChanged; // suscribirse desde cualquier script
 ```
 
+### Input
+
+```csharp
+// Agregar InputHandler como componente en un GameObject de escena
+[SerializeField] private InputHandler _input;
+
+private void OnEnable()
+{
+    _input.OnTap   += HandleTap;
+    _input.OnSwipe += HandleSwipe;
+}
+
+private void OnDisable()
+{
+    _input.OnTap   -= HandleTap;
+    _input.OnSwipe -= HandleSwipe;
+}
+
+private void HandleTap(Vector2 screenPos) { }
+private void HandleSwipe(Vector2 dir, Vector2 delta) { } // dir = normalizado
+```
+
+### Settings
+
+```csharp
+// En MainMenuController — asignar SettingsController en Inspector
+public void OnSettingsPressed() => _settings.Open();
+
+// SettingsController se conecta solo a AudioManager y LocalizationManager
+// Conectar en Inspector:
+//   Slider.OnValueChanged → OnMusicVolumeChanged / OnSfxVolumeChanged
+//   Btn_English.onClick   → OnEnglishPressed
+//   Btn_Spanish.onClick   → OnSpanishPressed
+//   Btn_Back.onClick      → OnBackPressed
+```
+
 ---
 
 ## Estructura de carpetas (`Assets/_Project/`)
@@ -146,9 +193,9 @@ GameManager.OnStateChanged += OnStateChanged; // suscribirse desde cualquier scr
 Scripts/
 ├── Core/        → SceneNames, BootLoader, LoadingController
 ├── Gameplay/    → PauseController (+ mecánicas futuras)
-├── Input/       → InputHandler abstraction (pendiente)
+├── Input/       → IInputHandler, InputHandler
 ├── Managers/    → SceneLoader, SaveManager, AudioManager, LocalizationManager, GameManager
-├── Menu/        → MainMenuController, LevelSelectController, LevelButton
+├── Menu/        → MainMenuController, LevelSelectController, LevelButton, SettingsController
 ├── UI/          → LocalizedText (+ componentes reutilizables futuros)
 ├── Data/        → SaveData, SoundData, LocalizationData
 └── Utils/       → Helpers, Extensions, Constants (pendiente)
@@ -195,8 +242,8 @@ ScriptableObjects/
 
 ### Siguiente — Infraestructura
 
-- [ ] **InputHandler** — abstraction layer touch/mouse/teclado en `Scripts/Input/`
-- [ ] **Settings Screen** — panel de volumen (sliders) + selector de idioma
+- [X] **InputHandler** — `IInputHandler` + `InputHandler` en `Scripts/Input/`
+- [X] **Settings Screen** — `SettingsController`: sliders volumen + toggle EN/ES
 - [ ] **Panel GameOver** — UI que aparece cuando GameManager → GameOver
 - [ ] **Panel LevelComplete** — UI con botón siguiente nivel y llamada a UnlockNextLevel()
 - [ ] **MainMenu** — reproducir `musicMainMenu` al entrar
