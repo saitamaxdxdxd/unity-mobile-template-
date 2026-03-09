@@ -1,8 +1,8 @@
-# Gryd — Unity Project Context
+# Retropolis — Unity Project Context
 
 ## Resumen del proyecto
 
-- **Nombre:** Gryd
+- **Nombre:** Retropolis
 - **Engine:** Unity (C#)
 - **Plataforma principal:** Mobile (iOS / Android)
 - **Plataforma secundaria:** PC (escalable — no romper nada mobile-first)
@@ -218,7 +218,7 @@ ScriptableObjects/
 
 ## Convenciones de código
 
-- **Namespaces:** `Gryd.Core`, `Gryd.Gameplay`, `Gryd.UI`, `Gryd.Managers`, `Gryd.Data`, `Gryd.Menu`
+- **Namespaces:** `Retropolis.Core`, `Retropolis.Gameplay`, `Retropolis.UI`, `Retropolis.Managers`, `Retropolis.Data`, `Retropolis.Menu`
 - **Naming:** PascalCase clases/métodos, `_camelCase` campos privados, prefijo `I` interfaces
 - **ScriptableObjects:** sufijo `Data` o `SO` (ej. `SoundData`, `PlayerStatsSO`)
 - **Events:** prefijo `On` (ej. `OnPlayerDied`, `OnLevelCompleted`)

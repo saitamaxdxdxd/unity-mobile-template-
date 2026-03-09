@@ -1,8 +1,8 @@
 using System.IO;
 using UnityEngine;
-using Gryd.Data;
+using Retropolis.Data;
 
-namespace Gryd.Managers
+namespace Retropolis.Managers
 {
     /// <summary>
     /// Gestiona todos los datos persistentes del juego en un único archivo JSON.

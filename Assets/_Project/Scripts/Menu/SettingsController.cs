@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Gryd.Managers;
+using Retropolis.Managers;
 
-namespace Gryd.Menu
+namespace Retropolis.Menu
 {
     /// <summary>
     /// Panel de ajustes: volumen de música, volumen de SFX y selector de idioma.

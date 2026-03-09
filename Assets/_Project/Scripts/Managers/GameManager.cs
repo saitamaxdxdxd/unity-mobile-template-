@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using Gryd.Core;
+using Retropolis.Core;
 
-namespace Gryd.Managers
+namespace Retropolis.Managers
 {
     public enum GameState { Playing, Paused, LevelComplete, GameOver }
 

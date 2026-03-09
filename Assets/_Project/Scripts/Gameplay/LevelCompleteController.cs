@@ -1,8 +1,8 @@
 using UnityEngine;
-using Gryd.Core;
-using Gryd.Managers;
+using Retropolis.Core;
+using Retropolis.Managers;
 
-namespace Gryd.Gameplay
+namespace Retropolis.Gameplay
 {
     /// <summary>
     /// Panel de nivel completado. Se muestra automáticamente cuando GameManager → LevelComplete.

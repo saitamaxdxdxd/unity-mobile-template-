@@ -1,8 +1,8 @@
 using UnityEngine;
 using TMPro;
-using Gryd.Managers;
+using Retropolis.Managers;
 
-namespace Gryd.UI
+namespace Retropolis.UI
 {
     /// <summary>
     /// Agrega este componente a cualquier TextMeshPro para que se actualice

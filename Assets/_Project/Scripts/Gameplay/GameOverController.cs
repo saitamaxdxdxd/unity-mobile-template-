@@ -1,7 +1,7 @@
 using UnityEngine;
-using Gryd.Managers;
+using Retropolis.Managers;
 
-namespace Gryd.Gameplay
+namespace Retropolis.Gameplay
 {
     /// <summary>
     /// Panel de Game Over. Se muestra automáticamente cuando GameManager → GameOver.

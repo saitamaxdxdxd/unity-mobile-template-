@@ -1,4 +1,4 @@
-namespace Gryd.Core
+namespace Retropolis.Core
 {
     public static class SceneNames
     {

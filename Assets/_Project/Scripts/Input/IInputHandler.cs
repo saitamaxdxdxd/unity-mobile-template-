@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Gryd.Input
+namespace Retropolis.Input
 {
     public interface IInputHandler
     {

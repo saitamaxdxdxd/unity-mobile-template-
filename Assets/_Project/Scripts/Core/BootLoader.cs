@@ -1,8 +1,8 @@
 using System.Collections;
 using UnityEngine;
-using Gryd.Managers;
+using Retropolis.Managers;
 
-namespace Gryd.Core
+namespace Retropolis.Core
 {
     /// <summary>
     /// Secuencia Boot: Panel empresa → Panel juego → MainMenu.

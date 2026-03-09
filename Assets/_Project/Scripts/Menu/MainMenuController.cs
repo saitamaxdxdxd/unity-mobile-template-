@@ -1,8 +1,8 @@
 using UnityEngine;
-using Gryd.Core;
-using Gryd.Managers;
+using Retropolis.Core;
+using Retropolis.Managers;
 
-namespace Gryd.Menu
+namespace Retropolis.Menu
 {
     /// <summary>
     /// Controla la pantalla principal del menú.

@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using Gryd.Data;
+using Retropolis.Data;
 
-namespace Gryd.Managers
+namespace Retropolis.Managers
 {
     public enum Language { English, Spanish }
 

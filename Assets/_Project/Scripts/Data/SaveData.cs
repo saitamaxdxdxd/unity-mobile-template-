@@ -1,6 +1,6 @@
 using System;
 
-namespace Gryd.Data
+namespace Retropolis.Data
 {
     /// <summary>
     /// Modelo de todos los datos persistentes del juego.

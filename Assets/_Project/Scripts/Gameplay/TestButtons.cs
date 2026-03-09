@@ -1,7 +1,7 @@
 using UnityEngine;
-using Gryd.Managers;
+using Retropolis.Managers;
 
-namespace Gryd.Gameplay
+namespace Retropolis.Gameplay
 {
     // TEMPORAL — borrar antes de release
     public class TestButtons : MonoBehaviour

@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Gryd.Managers;
+using Retropolis.Managers;
 
-namespace Gryd.Gameplay
+namespace Retropolis.Gameplay
 {
     /// <summary>
     /// Conecta los botones de pausa con GameManager.

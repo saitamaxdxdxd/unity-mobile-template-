@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Gryd.Core;
-using Gryd.Managers;
+using Retropolis.Core;
+using Retropolis.Managers;
 
-namespace Gryd.Menu
+namespace Retropolis.Menu
 {
     /// <summary>
     /// Pantalla de selección de niveles con paginación.

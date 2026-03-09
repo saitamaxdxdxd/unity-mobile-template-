@@ -1,8 +1,8 @@
 using System.Collections;
 using UnityEngine;
-using Gryd.Data;
+using Retropolis.Data;
 
-namespace Gryd.Managers
+namespace Retropolis.Managers
 {
     /// <summary>
     /// Maneja toda la reproducción de audio del juego.

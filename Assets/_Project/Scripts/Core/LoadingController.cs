@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Gryd.Core
+namespace Retropolis.Core
 {
     /// <summary>
     /// Carga la GameScene de forma asíncrona con un mínimo de 3 segundos de espera.
